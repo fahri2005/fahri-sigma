@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUHAMMAD FAHRI — Web Developer, Basketball Pro & Programmer</title>
+  <meta name="description" content="Portofolio resmi Muhammad Fahri: Web Developer, Atlet Basket Profesional, dan Programmer dengan rekam jejak di Diskominfo, Universitas Battuta, dan PT Cinta Sejati.">
+  <meta name="keywords" content="Muhammad Fahri, Web Developer, Basketbal Profesional, Programmer, Diskominfo, Universitas Battuta, PT Cinta Sejati">
+  <meta name="author" content="MUHAMMAD FAHRI">
+
+  <!-- OpenGraph / Social Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MUHAMMAD FAHRI — Web Developer, Basketball Pro & Programmer">
+  <meta property="og:description" content="Portofolio resmi Muhammad Fahri: Web Developer, Atlet Basket Profesional, dan Programmer.">
+  <meta property="og:image" content="assets/profile.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              black: '#030712',
+              slate: '#0b0f19',
+              card: 'rgba(15, 23, 42, 0.65)',
+              cyan: '#00f5ff',
+              purple: '#8b5cf6',
+              emerald: '#10b981',
+              amber: '#f59e0b'
+            }
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Inter"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-[#030712] text-slate-100 selection:bg-cyan-500 selection:text-slate-950 relative min-h-screen">
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- Noise Film Grain Overlay -->
+  <div class="grain-overlay"></div>
+
+  <!-- Matrix Easter Egg Canvas -->
+  <canvas id="matrix-canvas" class="hidden"></canvas>
+
+  <!-- Custom Interactive Cursor -->
+  <div class="custom-cursor-dot hidden md:block"></div>
+  <div class="custom-cursor-ring hidden md:block"></div>
+
+  <!-- ==================== HEADER & NAVIGATION ==================== -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo / Monogram -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 via-purple-600 to-amber-500 p-[1.5px] transition-transform duration-300 group-hover:scale-105">
+          <div class="w-full h-full bg-[#030712] rounded-[10px] flex items-center justify-center font-display font-black text-cyan-300 tracking-tighter text-base">
+            MF
+          </div>
+        </div>
+        <div>
+          <span class="font-display font-bold text-lg tracking-wider text-white flex items-center gap-1.5">
+            MUHAMMAD<span class="text-cyan-400">.FAHRI</span>
+          </span>
+          <span class="block font-mono text-[10px] tracking-widest text-slate-400 uppercase -mt-1">
+            Web Dev • Basketball Pro • Programmer
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links (Testimonials removed) -->
+      <nav class="hidden lg:flex items-center gap-1 bg-slate-900/60 backdrop-blur-xl border border-white/10 px-5 py-1.5 rounded-full shadow-lg">
+        <a href="#about" data-i18n="nav_about" class="px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-cyan-400 transition-colors">Tentang</a>
+        <a href="#skills" data-i18n="nav_skills" class="px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-cyan-400 transition-colors">Keahlian</a>
+        <a href="#work" data-i18n="nav_work" class="px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-cyan-400 transition-colors">Karya</a>
+        <a href="#experience" data-i18n="nav_experience" class="px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-cyan-400 transition-colors">Pengalaman</a>
+        <a href="#contact" data-i18n="nav_contact" class="px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-cyan-400 transition-colors">Kontak</a>
+      </nav>
+
+      <!-- Right Action Toolbar -->
+      <div class="flex items-center gap-2.5">
+
+        <!-- Cyber Audio FX Toggle Button -->
+        <button id="sound-toggle-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/70 border border-white/10 text-xs text-slate-300 hover:border-cyan-400/50 hover:text-cyan-300 transition-all shadow-sm" title="Toggle Sound FX">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+          <span class="hidden sm:inline font-mono text-[11px]">FX</span>
+        </button>
+
+        <!-- Language Switcher (ID / EN) -->
+        <button id="lang-toggle-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/70 border border-white/10 text-xs text-slate-300 hover:border-cyan-400/50 transition-all shadow-sm" title="Switch Language">
+          <span class="text-sm">🇮🇩</span>
+          <span class="font-mono text-[11px] font-bold text-cyan-300">ID</span>
+        </button>
+
+        <!-- Cyber Command Terminal Trigger -->
+        <button id="open-terminal-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/70 border border-white/10 text-xs text-slate-300 hover:border-emerald-400/50 hover:text-emerald-300 transition-all shadow-sm" title="Launch Cyber Terminal (Ctrl+K)">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          <span class="hidden md:inline font-mono text-[11px] text-emerald-300">CLI</span>
+        </button>
+
+        <!-- CTA Hire Button -->
+        <a href="#contact" data-i18n="nav_hire" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full font-display font-semibold text-xs tracking-wider uppercase bg-gradient-to-r from-cyan-400 to-amber-400 text-slate-950 hover:shadow-[0_0_20px_rgba(0,245,255,0.5)] transition-all transform hover:-translate-y-0.5">
+          <span>Hubungi Saya</span>
+          <span>⚡</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white" aria-label="Toggle Navigation">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden mt-3 max-w-7xl mx-auto bg-slate-950/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-5 shadow-2xl transition-all">
+      <div class="flex flex-col gap-3 font-display">
+        <a href="#about" data-i18n="nav_about" class="py-2 text-slate-300 hover:text-cyan-400 text-base font-medium">Tentang</a>
+        <a href="#skills" data-i18n="nav_skills" class="py-2 text-slate-300 hover:text-cyan-400 text-base font-medium">Keahlian</a>
+        <a href="#work" data-i18n="nav_work" class="py-2 text-slate-300 hover:text-cyan-400 text-base font-medium">Karya</a>
+        <a href="#experience" data-i18n="nav_experience" class="py-2 text-slate-300 hover:text-cyan-400 text-base font-medium">Pengalaman</a>
+        <a href="#contact" data-i18n="nav_contact" class="py-2 text-slate-300 hover:text-cyan-400 text-base font-medium">Kontak</a>
+        <a href="#contact" data-i18n="nav_hire" class="mt-2 text-center py-2.5 rounded-xl bg-cyan-400 text-slate-950 font-bold">Hubungi Saya ⚡</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    
+    <!-- Dynamic Interactive Cosmic Canvas -->
+    <canvas id="particle-canvas" class="absolute inset-0 z-0 pointer-events-auto"></canvas>
+
+    <!-- Radial Glow Atmosphere -->
+    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-500/15 via-purple-600/15 to-transparent rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+      
+      <!-- Live Availability Beacon -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/80 border border-emerald-500/30 backdrop-blur-md mb-8 animate-float-slow">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+        </span>
+        <span data-i18n="hero_badge" class="font-mono text-xs font-semibold text-emerald-300 tracking-wide">
+          Staf IT di PT Cinta Sejati • Terbuka untuk Kolaborasi & Proyek
+        </span>
+      </div>
+
+      <!-- Main Catchphrase & Persona -->
+      <h2 class="text-sm md:text-base font-mono uppercase tracking-[0.25em] text-slate-400 mb-3">
+        <span data-i18n="hero_greeting">Halo, Dunia. Saya</span> 
+        <span class="text-cyan-400 font-bold">MUHAMMAD FAHRI</span>
+      </h2>
+
+      <h1 class="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.08] mb-6">
+        Web Developer & <br class="hidden sm:inline" />
+        <span class="gradient-text-cyber">Basketball Pro</span>
+      </h1>
+
+      <p data-i18n="hero_desc" class="max-w-2xl text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed mb-10">
+        Perpaduan presisi kode seorang Web Developer & Programmer dengan ketangguhan mental, taktik, dan disiplin tinggi atlet basket profesional. Berpengalaman di Diskominfo, Universitas Battuta, hingga PT Cinta Sejati.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-16">
+        <a href="#work" data-i18n="hero_cta_explore" class="btn-cyber-primary group">
+          <span>Jelajahi Karya & Proyek</span>
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+
+        <button class="open-resume-btn btn-cyber-outline group" data-i18n="hero_cta_resume">
+          <svg class="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          <span>Lihat & Unduh CV</span>
+        </button>
+      </div>
+
+      <!-- Quick Stats Counter Strip -->
+      <div class="w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-2xl bg-slate-900/40 border border-white/10 backdrop-blur-xl">
+        <div class="text-center p-3">
+          <div class="font-display font-extrabold text-3xl sm:text-4xl text-cyan-300 mb-1">Web Dev</div>
+          <div data-i18n="hero_stat_exp" class="text-xs text-slate-400 uppercase tracking-wider font-mono">Spesialis Frontend & UI</div>
+        </div>
+        <div class="text-center p-3 border-l border-white/10">
+          <div class="font-display font-extrabold text-3xl sm:text-4xl text-amber-400 mb-1">🏀 Pro</div>
+          <div data-i18n="hero_stat_projects" class="text-xs text-slate-400 uppercase tracking-wider font-mono">Basketball Athlete</div>
+        </div>
+        <div class="text-center p-3 border-l-0 md:border-l border-white/10">
+          <div class="font-display font-extrabold text-3xl sm:text-4xl text-emerald-400 mb-1">Programmer</div>
+          <div data-i18n="hero_stat_perf" class="text-xs text-slate-400 uppercase tracking-wider font-mono">Logika & Problem Solving</div>
+        </div>
+        <div class="text-center p-3 border-l border-white/10">
+          <div class="font-display font-extrabold text-3xl sm:text-4xl text-purple-400 mb-1">Staf IT</div>
+          <div data-i18n="hero_stat_clients" class="text-xs text-slate-400 uppercase tracking-wider font-mono">PT Cinta Sejati</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll Indicator Arrow -->
+    <a href="#about" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-slate-400 hover:text-cyan-400 transition-colors animate-bounce">
+      <span class="text-[10px] font-mono tracking-widest uppercase">SCROLL</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </a>
+  </section>
+
+  <!-- ==================== ABOUT PHILOSOPHY ==================== -->
+  <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Interactive Hologram Avatar Card with Real User Photo -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="tilt-card relative w-full max-w-md rounded-3xl p-1 animated-border">
+          <div class="relative rounded-[22px] bg-slate-950/90 p-6 overflow-hidden border border-white/10 backdrop-blur-2xl">
+            
+            <!-- Glow background -->
+            <div class="absolute -top-20 -right-20 w-44 h-44 bg-cyan-500/30 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-20 -left-20 w-44 h-44 bg-amber-500/30 rounded-full blur-3xl"></div>
+
+            <div class="relative z-10">
+              <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                </div>
+                <span class="font-mono text-xs text-cyan-400 tracking-wider">SECURE_NODE://MUHAMMAD_FAHRI</span>
+              </div>
+
+              <!-- Visual Representation with Real Photo -->
+              <div class="relative aspect-[4/5] rounded-2xl overflow-hidden mb-6 group border border-white/10 shadow-2xl">
+                <img src="assets/profile.jpg" alt="Muhammad Fahri" class="w-full h-full object-cover object-top filter contrast-105 brightness-100 group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                
+                <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                  <div>
+                    <div class="text-white font-display font-bold text-lg">MUHAMMAD FAHRI</div>
+                    <div class="text-cyan-400 text-xs font-mono">Web Developer • Athlete • Programmer</div>
+                  </div>
+                  <div class="px-2.5 py-1 rounded bg-slate-900/90 border border-amber-400/40 text-[10px] font-mono text-amber-300 font-bold">
+                    🏀 PRO ATHLETE
+                  </div>
+                </div>
+              </div>
+
+              <!-- Diagnostic Info Box -->
+              <div class="font-mono text-xs space-y-1.5 text-slate-300 bg-slate-900/60 p-4 rounded-xl border border-white/5">
+                <div class="flex justify-between">
+                  <span class="text-slate-400">STATUS:</span>
+                  <span class="text-emerald-400 font-bold">STAF IT @ PT CINTA SEJATI</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-400">KEAHLIAN:</span>
+                  <span class="text-cyan-300 font-bold">WEB DEV & PROGRAMMER</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-400">DISIPLIN ATLET:</span>
+                  <span class="text-amber-300 font-bold">BASKETBALL PROFESIONAL</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Description Content -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 font-mono text-xs">
+          <span>01.</span>
+          <span class="uppercase tracking-wider">Profil & Karakter</span>
+        </div>
+
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl tracking-tight leading-tight">
+          Dedikasi Tinggi di Dunia Teknologi & <span class="gradient-text-cyber">Ketangguhan di Lapangan Basket</span>.
+        </h2>
+
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+          Saya adalah <strong>Muhammad Fahri</strong> — seorang Web Developer, atlet basket profesional, dan programmer yang menggabungkan kemampuan analisis logika digital dengan etos kerja tanpa lelah. Saya percaya bahwa membangun website yang hebat membutuhkan kombinasi presisi teknis, kreativitas desain, dan ketangguhan mental seorang atlet.
+        </p>
+
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+          Dari pengalaman mengabdi sebagai <strong>Mahasiswa Magang di Diskominfo</strong>, memimpin perancangan antarmuka digital sebagai <strong>Kepala Desainer Web di Universitas Battuta</strong>, hingga kini mendedikasikan keahlian sebagai <strong>Staf IT di PT Cinta Sejati</strong>, saya selalu berkomitmen menghadirkan solusi digital yang solid, efisien, dan berdampak nyata.
+        </p>
+
+        <!-- Pillars Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+          <div class="p-4 rounded-xl bg-slate-900/50 border border-white/10 hover:border-cyan-500/40 transition-colors">
+            <div class="text-cyan-400 font-bold font-display text-lg mb-1 flex items-center gap-2">
+              <span>💻</span> Web Dev & Programmer
+            </div>
+            <div class="text-xs text-slate-400 leading-relaxed">
+              Mengembangkan website responsif, sistem informasi terintegrasi, dan arsitektur kode yang bersih serta mudah dirawat.
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/50 border border-white/10 hover:border-amber-500/40 transition-colors">
+            <div class="text-amber-400 font-bold font-display text-lg mb-1 flex items-center gap-2">
+              <span>🏀</span> Mentalitas Atlet Basket
+            </div>
+            <div class="text-xs text-slate-400 leading-relaxed">
+              Disiplin tinggi, kerja sama tim solid, fokus di bawah tekanan, serta mental pemenang dalam menghadapi setiap tantangan proyek.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS ARSENAL ==================== -->
+  <section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-300 font-mono text-xs mb-4">
+        <span>02.</span>
+        <span class="uppercase tracking-wider">Kemampuan Utama</span>
+      </div>
+      <h2 data-i18n="skills_title" class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight mb-4">
+        Keahlian & Spesialisasi
+      </h2>
+      <p data-i18n="skills_sub" class="text-slate-400 text-base sm:text-lg">
+        Tiga pilar keahlian Muhammad Fahri: Web Developer, Basketball Profesional, dan Programmer.
+      </p>
+    </div>
+
+    <!-- Skills Category Grid (3 Pillars: Web Developer, Basketball Pro, Programmer) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Card 1: Web Developer -->
+      <div class="glass-card rounded-2xl p-6 tilt-card group">
+        <div class="tilt-inner">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 transition-transform">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">Web Developer</h3>
+          <p class="text-xs text-slate-400 mb-6">Membangun situs web modern, responsif, dan interaktif dengan desain elegan serta performa cepat.</p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">HTML5, CSS3 & Modern JavaScript</span>
+                <span class="text-cyan-400 font-bold">96%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-1.5 rounded-full" style="width: 96%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">UI/UX Web Design & Desain Kampus</span>
+                <span class="text-cyan-400 font-bold">94%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-1.5 rounded-full" style="width: 94%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">Tailwind CSS & Framework Web</span>
+                <span class="text-cyan-400 font-bold">95%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-cyan-500 to-emerald-500 h-1.5 rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Basketball Profesional -->
+      <div class="glass-card rounded-2xl p-6 tilt-card group border-amber-500/20">
+        <div class="tilt-inner">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-5 group-hover:scale-110 transition-transform">
+            <span class="text-2xl">🏀</span>
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">Basketball Profesional</h3>
+          <p class="text-xs text-slate-400 mb-6">Dedikasi atletik tingkat tinggi, kepemimpinan tim lapangan, kelincahan, dan fokus tanpa kompromi.</p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">Tactical Play & Visi Lapangan</span>
+                <span class="text-amber-400 font-bold">98%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-1.5 rounded-full" style="width: 98%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">Kepemimpinan Tim & Komunikasi</span>
+                <span class="text-amber-400 font-bold">96%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-amber-500 to-yellow-400 h-1.5 rounded-full" style="width: 96%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">Stamina Fisik & Mental Ketangguhan</span>
+                <span class="text-amber-400 font-bold">99%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-amber-500 to-rose-500 h-1.5 rounded-full" style="width: 99%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Programmer & Software Developer -->
+      <div class="glass-card rounded-2xl p-6 tilt-card group">
+        <div class="tilt-inner">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-5 group-hover:scale-110 transition-transform">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">Programmer & IT Dev</h3>
+          <p class="text-xs text-slate-400 mb-6">Pemecahan masalah dengan algoritma, sistem database, otomatisasi, dan pemeliharaan sistem TI.</p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">Logika Pemrograman & Algoritma</span>
+                <span class="text-purple-400 font-bold">94%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-1.5 rounded-full" style="width: 94%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">Dukungan Sistem TI & Troubleshooting</span>
+                <span class="text-purple-400 font-bold">97%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-1.5 rounded-full" style="width: 97%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">Database & Pengelolaan Data</span>
+                <span class="text-purple-400 font-bold">93%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-500 to-cyan-500 h-1.5 rounded-full" style="width: 93%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tech Badges Cloud -->
+    <div class="mt-12 flex flex-wrap justify-center gap-2.5 max-w-4xl mx-auto">
+      <span class="px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300 hover:border-cyan-400 transition-colors">#WebDeveloper</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-amber-500/30 text-xs font-mono text-amber-300 hover:border-amber-400 transition-colors">#BasketballProfesional</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-purple-500/30 text-xs font-mono text-purple-300 hover:border-purple-400 transition-colors">#Programmer</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300 hover:border-cyan-400 transition-colors">#Diskominfo</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300 hover:border-cyan-400 transition-colors">#UniversitasBattuta</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300 hover:border-cyan-400 transition-colors">#PTCintaSejati</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300 hover:border-cyan-400 transition-colors">#TeamWork</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-300 hover:border-cyan-400 transition-colors">#DisiplinTinggi</span>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED WORK ==================== -->
+  <section id="work" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 font-mono text-xs mb-4">
+        <span>03.</span>
+        <span class="uppercase tracking-wider">Showcase Portofolio</span>
+      </div>
+      <h2 data-i18n="work_title" class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight mb-4">
+        Karya Unggulan & Portofolio
+      </h2>
+      <p data-i18n="work_sub" class="text-slate-400 text-base sm:text-lg">
+        Koleksi karya web dan sistem digital hasil karya Muhammad Fahri.
+      </p>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+      <button class="filter-btn px-4 py-2 rounded-full font-mono text-xs font-semibold bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/25 transition-all" data-filter="all">Semua Kategori</button>
+      <button class="filter-btn px-4 py-2 rounded-full font-mono text-xs font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-all" data-filter="ai">AI & Smart Web</button>
+      <button class="filter-btn px-4 py-2 rounded-full font-mono text-xs font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-all" data-filter="3d">3D & Interaktif</button>
+      <button class="filter-btn px-4 py-2 rounded-full font-mono text-xs font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-all" data-filter="fullstack">Sistem Informasi</button>
+      <button class="filter-btn px-4 py-2 rounded-full font-mono text-xs font-semibold bg-white/5 text-slate-300 hover:bg-white/10 transition-all" data-filter="fintech">Web Portal</button>
+    </div>
+
+    <!-- Project Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Project 1: Portal Akademik & Web Kampus -->
+      <div class="project-card tilt-card glass-card rounded-3xl overflow-hidden group" data-category="fullstack">
+        <div class="tilt-inner p-2">
+          <div class="relative aspect-video rounded-2xl overflow-hidden mb-6 border border-white/10">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80" alt="Portal Kampus Universitas Battuta" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+            
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 backdrop-blur-md">
+                Desain Web Kampus
+              </span>
+            </div>
+
+            <div class="absolute bottom-4 right-4 flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded bg-slate-900/80 font-mono text-[11px] text-emerald-400 border border-emerald-500/30">
+                Universitas Battuta
+              </span>
+            </div>
+          </div>
+
+          <div class="px-4 pb-4">
+            <h3 class="font-display font-extrabold text-2xl text-white mb-2 group-hover:text-cyan-400 transition-colors">
+              Portal Digital Universitas Battuta
+            </h3>
+            <p class="text-sm text-slate-300 mb-4 line-clamp-2">
+              Perancangan sistem antarmuka web portal kampus terpadu dengan navigasi intuitif, estetika modern, dan kemudahan akses mahasiswa.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Web Design</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">HTML5/CSS3</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">JavaScript</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">UI/UX</span>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-white/10 pt-4">
+              <button class="open-project-btn inline-flex items-center gap-1.5 text-xs font-display font-bold text-cyan-400 hover:text-cyan-300 uppercase tracking-wider transition-colors" data-project-id="nexus-ai">
+                <span>Pelajari Detail Proyek</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Sistem Layanan Informasi Diskominfo -->
+      <div class="project-card tilt-card glass-card rounded-3xl overflow-hidden group" data-category="fintech">
+        <div class="tilt-inner p-2">
+          <div class="relative aspect-video rounded-2xl overflow-hidden mb-6 border border-white/10">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" alt="Layanan Publik Diskominfo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+            
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-purple-950/80 border border-purple-400/40 text-purple-300 backdrop-blur-md">
+                Diskominfo Project
+              </span>
+            </div>
+
+            <div class="absolute bottom-4 right-4 flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded bg-slate-900/80 font-mono text-[11px] text-purple-300 border border-purple-500/30">
+                Pemerintahan Digital
+              </span>
+            </div>
+          </div>
+
+          <div class="px-4 pb-4">
+            <h3 class="font-display font-extrabold text-2xl text-white mb-2 group-hover:text-purple-400 transition-colors">
+              Platform Data & Layanan Publik Diskominfo
+            </h3>
+            <p class="text-sm text-slate-300 mb-4 line-clamp-2">
+              Asistensi digitalisasi layanan masyarakat dan pengelolaan sistem basis data informasi terpadu instansi Diskominfo.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Web Portal</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Database</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">PHP/JS</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Keamanan Data</span>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-white/10 pt-4">
+              <button class="open-project-btn inline-flex items-center gap-1.5 text-xs font-display font-bold text-purple-400 hover:text-purple-300 uppercase tracking-wider transition-colors" data-project-id="aetheria-3d">
+                <span>Pelajari Detail Proyek</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: IT Management PT Cinta Sejati -->
+      <div class="project-card tilt-card glass-card rounded-3xl overflow-hidden group" data-category="fullstack">
+        <div class="tilt-inner p-2">
+          <div class="relative aspect-video rounded-2xl overflow-hidden mb-6 border border-white/10">
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" alt="IT Management PT Cinta Sejati" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+            
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-950/80 border border-emerald-400/40 text-emerald-300 backdrop-blur-md">
+                Infrastruktur IT
+              </span>
+            </div>
+
+            <div class="absolute bottom-4 right-4 flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded bg-slate-900/80 font-mono text-[11px] text-emerald-300 border border-emerald-500/30">
+                PT Cinta Sejati
+              </span>
+            </div>
+          </div>
+
+          <div class="px-4 pb-4">
+            <h3 class="font-display font-extrabold text-2xl text-white mb-2 group-hover:text-emerald-400 transition-colors">
+              Sistem Operasional IT & Troubleshooting
+            </h3>
+            <p class="text-sm text-slate-300 mb-4 line-clamp-2">
+              Pengelolaan jaringan komputer, sistem hardware/software internal, dan dukungan operasional IT terintegrasi PT Cinta Sejati.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">IT Support</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Networking</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Maintenance</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">System Admin</span>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-white/10 pt-4">
+              <button class="open-project-btn inline-flex items-center gap-1.5 text-xs font-display font-bold text-emerald-400 hover:text-emerald-300 uppercase tracking-wider transition-colors" data-project-id="krypton-core">
+                <span>Pelajari Detail Proyek</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4: Basketball Team Analytics Dashboard -->
+      <div class="project-card tilt-card glass-card rounded-3xl overflow-hidden group" data-category="3d">
+        <div class="tilt-inner p-2">
+          <div class="relative aspect-video rounded-2xl overflow-hidden mb-6 border border-white/10">
+            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80" alt="Basketball Analytics" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+            
+            <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-950/80 border border-amber-400/40 text-amber-300 backdrop-blur-md">
+                Sports & Analytics Web
+              </span>
+            </div>
+
+            <div class="absolute bottom-4 right-4 flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded bg-slate-900/80 font-mono text-[11px] text-amber-300 border border-amber-500/30">
+                Basketball Pro
+              </span>
+            </div>
+          </div>
+
+          <div class="px-4 pb-4">
+            <h3 class="font-display font-extrabold text-2xl text-white mb-2 group-hover:text-amber-400 transition-colors">
+              Basketball Tactic & Team Performance Web
+            </h3>
+            <p class="text-sm text-slate-300 mb-4 line-clamp-2">
+              Aplikasi web interaktif untuk visualisasi taktik bola basket, statistik performa atlet, dan strategi kemenangan pertandingan.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Interactive Web</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Sports Tech</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Basketball Tactic</span>
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">Canvas API</span>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-white/10 pt-4">
+              <button class="open-project-btn inline-flex items-center gap-1.5 text-xs font-display font-bold text-amber-400 hover:text-amber-300 uppercase tracking-wider transition-colors" data-project-id="apex-sentinel">
+                <span>Pelajari Detail Proyek</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== EXPERIENCE TIMELINE ==================== -->
+  <section id="experience" class="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 font-mono text-xs mb-4">
+        <span>04.</span>
+        <span class="uppercase tracking-wider">Perjalanan Profesional</span>
+      </div>
+      <h2 data-i18n="exp_title" class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight mb-4">
+        Rekam Jejak & Pengalaman
+      </h2>
+      <p data-i18n="exp_sub" class="text-slate-400 text-base sm:text-lg">
+        Perjalanan dedikasi karir Muhammad Fahri dari instansi kedinasan, kampus, hingga perusahaan.
+      </p>
+    </div>
+
+    <!-- Timeline Container -->
+    <div class="relative border-l-2 border-white/10 ml-4 md:ml-32 space-y-12">
+      
+      <!-- Timeline Item 1: Staf IT di PT Cinta Sejati -->
+      <div class="relative pl-8 md:pl-12 group">
+        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-cyan-400 border-4 border-slate-950 shadow-[0_0_12px_#00f5ff]"></div>
+        
+        <div class="hidden md:block absolute -left-36 top-1 text-right font-mono text-xs font-bold text-cyan-300">
+          TERKINI
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-cyan-500/30 hover:border-cyan-400 transition-colors">
+          <div class="md:hidden font-mono text-xs font-bold text-cyan-300 mb-1">TERKINI</div>
+          <h3 class="font-display font-bold text-xl text-white">Staf IT</h3>
+          <div class="text-xs font-mono text-cyan-400 mb-3">PT Cinta Sejati</div>
+          <p class="text-sm text-slate-300 leading-relaxed mb-4">
+            Bertanggung jawab secara penuh atas pemeliharaan infrastruktur teknologi informasi, dukungan teknis perangkat keras dan lunak, troubleshooting jaringan, administrasi sistem, serta memastikan seluruh operasional TI perusahaan berjalan lancar dan optimal.
+          </p>
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-white/5">IT Support</span>
+            <span class="px-2 py-0.5 rounded bg-white/5">Network Troubleshooting</span>
+            <span class="px-2 py-0.5 rounded bg-white/5">System Maintenance</span>
+            <span class="px-2 py-0.5 rounded bg-white/5">Keamanan Sistem</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 2: Kepala Desainer Web di Universitas Battuta -->
+      <div class="relative pl-8 md:pl-12 group">
+        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-950 shadow-[0_0_12px_#8b5cf6]"></div>
+        
+        <div class="hidden md:block absolute -left-36 top-1 text-right font-mono text-xs font-bold text-purple-300">
+          KAMPUS
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-purple-500/30 hover:border-purple-400 transition-colors">
+          <div class="md:hidden font-mono text-xs font-bold text-purple-300 mb-1">KAMPUS</div>
+          <h3 class="font-display font-bold text-xl text-white">Kepala Desainer Web</h3>
+          <div class="text-xs font-mono text-purple-400 mb-3">Universitas Battuta</div>
+          <p class="text-sm text-slate-300 leading-relaxed mb-4">
+            Memimpin perancangan tampilan visual, arsitektur informasi, dan perancangan pengalaman pengguna (UI/UX) pada website resmi Universitas Battuta. Mengkoordinasikan desain web agar mencerminkan identitas kampus yang modern, informatif, dan responsif.
+          </p>
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-white/5">Kepala Desainer Web</span>
+            <span class="px-2 py-0.5 rounded bg-white/5">UI/UX Web Design</span>
+            <span class="px-2 py-0.5 rounded bg-white/5">Universitas Battuta</span>
+            <span class="px-2 py-0.5 rounded bg-white/5">Portal Akademik</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 3: Mahasiswa Magang di Diskominfo -->
+      <div class="relative pl-8 md:pl-12 group">
+        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-400 border-4 border-slate-950 shadow-[0_0_12px_#10b981]"></div>
+        
+        <div class="hidden md:block absolute -left-36 top-1 text-right font-mono text-xs font-bold text-emerald-300">
+          MAGANG
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-emerald-500/30 hover:border-emerald-400 transition-colors">
+          <div class="md:hidden font-mono text-xs font-bold text-emerald-300 mb-1">MAGANG</div>
+          <h3 class="font-display font-bold text-xl text-white">Mahasiswa Magang</h3>
+          <div class="text-xs font-mono text-emerald-400 mb-3">Dinas Komunikasi dan Informatika (Diskominfo)</div>
+          <p class="text-sm text-slate-300 leading-relaxed mb-4">
+            Mengikuti program magang kedinasan dengan berkontribusi aktif dalam asistensi digitalisasi layanan publik, pengelolaan data sistem informasi daerah, serta kolaborasi dalam pengembangan sistem berbasis web untuk instansi pemerintahan.
+          </p>
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-white/5">Diskominfo</span>
+            <span class="px-2 py-0.5 rounded bg-white/5">Digitalisasi Pemerintahan</span>
+            <span class="px-2 py-0.5 rounded bg-white/5">Pengolahan Data</span>
+            <span class="px-2 py-0.5 rounded bg-white/5">Web Development</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT PORTAL ==================== -->
+  <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Direct Coordinates & Social Channels -->
+      <div class="lg:col-span-5 space-y-8">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 font-mono text-xs mb-4">
+            <span>05.</span>
+            <span class="uppercase tracking-wider">Inisiasi Komunikasi</span>
+          </div>
+          <h2 data-i18n="contact_title" class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight mb-4">
+            Mari Terhubung & Berkolaborasi.
+          </h2>
+          <p data-i18n="contact_sub" class="text-slate-400 text-sm sm:text-base leading-relaxed">
+            Punya tawaran proyek web development, kebutuhan tenaga IT handal, atau kolaborasi olahraga bola basket? Kirimkan pesan langsung kepada Muhammad Fahri.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Copy Email Card with updated Gmail: fm9865554@gmail.com -->
+          <div class="glass-card p-4 rounded-xl flex items-center justify-between group hover:border-cyan-400/50 transition-colors">
+            <div class="flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              </div>
+              <div>
+                <div class="text-[11px] font-mono text-slate-400 uppercase">Surel Langsung (Gmail)</div>
+                <div class="text-sm font-semibold text-white">fm9865554@gmail.com</div>
+              </div>
+            </div>
+            <button class="copy-trigger px-3 py-1.5 rounded-lg bg-white/5 hover:bg-cyan-500 hover:text-slate-950 text-xs font-mono text-cyan-300 transition-all" data-copy="fm9865554@gmail.com">
+              <span class="copy-feedback">Copy</span>
+            </button>
+          </div>
+
+          <!-- Professional Position Card -->
+          <div class="glass-card p-4 rounded-xl flex items-center justify-between group hover:border-amber-400/50 transition-colors">
+            <div class="flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                <span class="text-lg">🏀</span>
+              </div>
+              <div>
+                <div class="text-[11px] font-mono text-slate-400 uppercase">Posisi Sekarang</div>
+                <div class="text-sm font-semibold text-white">Staf IT @ PT Cinta Sejati</div>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-slate-900 font-mono text-[11px] text-amber-300 border border-amber-500/30">
+              Aktif
+            </span>
+          </div>
+
+          <!-- Location & Availability -->
+          <div class="p-4 rounded-xl bg-slate-900/40 border border-white/5 text-xs font-mono space-y-2 text-slate-400">
+            <div class="flex justify-between items-center">
+              <span>LOKASI:</span>
+              <span class="text-white font-bold">Indonesia // Onsite & Remote</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span>RESPONS SIKLUS:</span>
+              <span class="text-emerald-400 font-bold">&lt; 4 Jam</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Contact Form -->
+      <div class="lg:col-span-7">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 animated-border">
+          <form id="contact-form" class="space-y-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Name Input -->
+              <div>
+                <label class="block font-mono text-xs uppercase text-slate-400 mb-2">Nama Lengkap</label>
+                <input type="text" required placeholder="Nama Anda" class="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+              </div>
+
+              <!-- Email Input -->
+              <div>
+                <label class="block font-mono text-xs uppercase text-slate-400 mb-2">Surel Kontak</label>
+                <input type="email" required placeholder="email@contoh.com" class="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all">
+              </div>
+            </div>
+
+            <!-- Dynamic Budget Range Slider -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label data-i18n="contact_budget" class="font-mono text-xs uppercase text-slate-400">Estimasi Anggaran Proyek / Kerja Sama:</label>
+                <span id="budget-value" class="font-mono text-sm font-bold text-cyan-400">Proyek Menengah</span>
+              </div>
+              <input type="range" id="budget-slider" min="0" max="4" value="2" step="1" class="w-full accent-cyan-400 cursor-pointer">
+              <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+                <span>Fleksibel</span>
+                <span>Standar</span>
+                <span>Menengah</span>
+                <span>Enterprise / Tim</span>
+              </div>
+            </div>
+
+            <!-- Project Message -->
+            <div>
+              <label class="block font-mono text-xs uppercase text-slate-400 mb-2">Pesan atau Kebutuhan Kerjasama</label>
+              <textarea rows="4" required placeholder="Ceritakan tujuan proyek, pengembangan web, atau kerjasama yang ingin Anda bicarakan dengan Muhammad Fahri..." class="w-full px-4 py-3 rounded-xl bg-slate-950/70 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm transition-all"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="contact-submit-btn" class="w-full btn-cyber-primary py-4 font-display font-bold text-base tracking-wide">
+              <span data-i18n="contact_submit">Kirim Pesan ke fm9865554@gmail.com</span>
+              <span>⚡</span>
+            </button>
+
+            <!-- Success Alert Indicator -->
+            <div id="contact-status-msg" class="hidden p-4 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-emerald-300 text-sm flex items-center gap-3">
+              <span class="text-xl">🎉</span>
+              <span>Pesan berhasil dikirim! Muhammad Fahri akan segera membaca dan merespons pesan Anda via email.</span>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="border-t border-white/10 py-12 px-4 sm:px-6 lg:px-8 relative z-10 bg-slate-950/90">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-cyan-400 text-slate-950 font-display font-black flex items-center justify-center text-xs">
+          MF
+        </div>
+        <div>
+          <div class="font-display font-bold text-white text-sm">MUHAMMAD FAHRI</div>
+          <div class="text-[11px] font-mono text-slate-500">Web Developer • Basketball Pro • Programmer © 2026</div>
+        </div>
+      </div>
+
+      <!-- Real-Time Local Clock -->
+      <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-white/10 font-mono text-xs text-slate-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="realtime-clock">Memuat Waktu...</span>
+      </div>
+
+      <!-- Terminal Hotkey Hint -->
+      <div class="text-xs font-mono text-slate-400 hidden sm:block">
+        <span data-i18n="terminal_hint">Tekan Ctrl+K untuk Cyber CLI</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== PROJECT DETAIL MODAL ==================== -->
+  <div id="project-modal" class="hidden fixed inset-0 z-50 modal-backdrop items-center justify-center p-4">
+    <div class="glass-card max-w-3xl w-full rounded-3xl overflow-hidden border border-cyan-500/30 shadow-2xl max-h-[90vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-white/10 flex items-center justify-between bg-slate-950/80">
+        <div class="flex items-center gap-3">
+          <span id="modal-project-badge" class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-cyan-950 border border-cyan-400/40 text-cyan-300">
+            Category
+          </span>
+          <h3 id="modal-project-title" class="font-display font-bold text-xl text-white">Project Title</h3>
+        </div>
+        <button id="close-project-modal" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 overflow-y-auto space-y-6">
+        <div class="relative aspect-video rounded-2xl overflow-hidden border border-white/10">
+          <img id="modal-project-image" src="" alt="Project Preview" class="w-full h-full object-cover">
+        </div>
+
+        <div>
+          <h4 class="font-mono text-xs uppercase text-cyan-400 tracking-wider mb-1">Konsep & Perancangan</h4>
+          <p id="modal-project-tagline" class="font-display font-bold text-lg text-white mb-3"></p>
+          <p id="modal-project-overview" class="text-sm text-slate-300 leading-relaxed"></p>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-xs uppercase text-purple-400 tracking-wider mb-2">Fitur Kunci & Keunggulan</h4>
+          <ul id="modal-project-highlights" class="space-y-2"></ul>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-xs uppercase text-emerald-400 tracking-wider mb-2">Stack Teknologi</h4>
+          <div id="modal-project-tech" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-white/10 bg-slate-950/80 flex items-center justify-end gap-3">
+        <a id="modal-project-github" href="mailto:fm9865554@gmail.com" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold transition-all">
+          Kontak Pembuat
+        </a>
+        <a id="modal-project-live" href="#contact" onclick="document.getElementById('close-project-modal').click()" class="px-4 py-2 rounded-xl bg-cyan-400 text-slate-950 text-xs font-bold hover:bg-cyan-300 transition-all">
+          Konsultasikan Proyek ↗
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== CYBER TERMINAL MODAL ==================== -->
+  <div id="terminal-modal" class="hidden fixed inset-0 z-50 modal-backdrop items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full rounded-2xl overflow-hidden border border-emerald-500/40 shadow-2xl flex flex-col scanlines">
+      
+      <!-- Terminal Header Bar -->
+      <div class="p-3 bg-slate-950/90 border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-rose-500 cursor-pointer" onclick="window.terminal.close()"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+          <span class="ml-2 font-mono text-xs text-slate-300 font-bold">muhammad-fahri@workstation:~</span>
+        </div>
+        <button id="close-terminal-btn" class="text-slate-400 hover:text-white text-xs font-mono">
+          [ESC / CLOSE]
+        </button>
+      </div>
+
+      <!-- Quick Command Buttons Bar -->
+      <div class="p-2 bg-slate-900/60 border-b border-white/5 flex flex-wrap gap-1.5 text-[11px] font-mono">
+        <span class="text-slate-500 px-1 py-0.5">Quick:</span>
+        <button class="terminal-quick-btn px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-cyan-300" data-cmd="help">help</button>
+        <button class="terminal-quick-btn px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-cyan-300" data-cmd="about">about</button>
+        <button class="terminal-quick-btn px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-cyan-300" data-cmd="skills">skills</button>
+        <button class="terminal-quick-btn px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-cyan-300" data-cmd="projects">projects</button>
+        <button class="terminal-quick-btn px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-emerald-300" data-cmd="matrix">matrix</button>
+        <button class="terminal-quick-btn px-2 py-0.5 rounded bg-white/5 hover:bg-white/10 text-yellow-300" data-cmd="sudo hire">sudo hire</button>
+      </div>
+
+      <!-- Output Screen -->
+      <div id="terminal-output" class="p-4 h-80 overflow-y-auto font-mono text-xs space-y-2 bg-slate-950/80 text-slate-200">
+        <div class="text-emerald-400 font-bold">
+          ⚡ MUHAMMAD FAHRI CYBER COMMAND CENTER ONLINE
+        </div>
+        <div class="text-slate-400">
+          Ketik <span class="text-yellow-400 font-bold">help</span> untuk melihat daftar perintah atau klik tombol pintas di atas.
+        </div>
+      </div>
+
+      <!-- Input Line -->
+      <div class="p-3 bg-slate-950 border-t border-white/10 flex items-center gap-2">
+        <span class="font-mono text-xs text-emerald-400 font-bold">fahri@system:~$</span>
+        <input type="text" id="terminal-input" class="w-full bg-transparent font-mono text-xs text-cyan-300 focus:outline-none" placeholder="Masukkan perintah..." autocomplete="off" spellcheck="false">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== RESUME / CV MODAL ==================== -->
+  <div id="resume-modal" class="hidden fixed inset-0 z-50 modal-backdrop items-center justify-center p-4">
+    <div class="glass-card max-w-3xl w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl max-h-[90vh] flex flex-col bg-slate-950">
+      
+      <!-- Resume Modal Header -->
+      <div class="p-4 border-b border-white/10 flex items-center justify-between no-print">
+        <div class="flex items-center gap-2">
+          <span class="text-cyan-400">📄</span>
+          <span class="font-display font-bold text-white">Curriculum Vitae — MUHAMMAD FAHRI</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="print-resume-btn" class="px-3 py-1.5 rounded-lg bg-cyan-400 text-slate-950 text-xs font-bold hover:bg-cyan-300 transition-all flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            <span>Cetak / Simpan PDF</span>
+          </button>
+          <button id="close-resume-btn" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Resume Document Body -->
+      <div id="resume-content" class="p-8 overflow-y-auto space-y-6 text-slate-200 font-sans text-sm">
+        
+        <!-- Document Header -->
+        <div class="border-b border-white/10 pb-6 flex items-start justify-between">
+          <div>
+            <h1 class="font-display font-extrabold text-3xl text-white">MUHAMMAD FAHRI</h1>
+            <div class="text-cyan-400 font-mono text-sm font-semibold mt-1">Web Developer • Basketball Profesional • Programmer</div>
+            <div class="text-xs text-slate-400 mt-2 flex flex-wrap gap-4 font-mono">
+              <span>Email: fm9865554@gmail.com</span>
+              <span>Posisi Terkini: Staf IT di PT Cinta Sejati</span>
+              <span>Lokasi: Indonesia</span>
+            </div>
+          </div>
+          <div class="w-20 h-24 rounded-lg overflow-hidden border border-white/20 hidden sm:block">
+            <img src="assets/profile.jpg" alt="Muhammad Fahri" class="w-full h-full object-cover object-top">
+          </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div>
+          <h2 class="font-display font-bold text-base text-cyan-300 uppercase tracking-wider mb-2">Ringkasan Profil</h2>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Profesional dengan kompetensi unik yang memadukan keahlian teknis Web Developer dan Programmer dengan mentalitas juara, ketahanan, dan fokus tinggi seorang atlet basket profesional. Memiliki pengalaman kerja nyata dalam digitalisasi layanan publik di Diskominfo, kepemimpinan desain digital di Universitas Battuta, serta pengelolaan infrastruktur TI di PT Cinta Sejati.
+          </p>
+        </div>
+
+        <!-- Experience (Rekam Jejak) -->
+        <div>
+          <h2 class="font-display font-bold text-base text-cyan-300 uppercase tracking-wider mb-3">Rekam Jejak & Pengalaman Kerja</h2>
+          <div class="space-y-4">
+            <!-- PT Cinta Sejati -->
+            <div class="border-l-2 border-cyan-400 pl-4 py-1">
+              <div class="flex justify-between items-baseline">
+                <span class="font-bold text-white text-sm">Staf IT</span>
+                <span class="text-xs font-mono text-cyan-400 font-bold">Saat Ini / Aktif</span>
+              </div>
+              <div class="text-xs text-purple-400 font-mono font-semibold">PT Cinta Sejati</div>
+              <p class="text-xs text-slate-300 mt-1">
+                Bertanggung jawab penuh atas pemeliharaan perangkat keras dan lunak, kelancaran jaringan data, administrasi sistem TI, serta penanganan masalah teknis (*troubleshooting*) secara cepat dan tanggap.
+              </p>
+            </div>
+
+            <!-- Universitas Battuta -->
+            <div class="border-l-2 border-purple-400 pl-4 py-1">
+              <div class="flex justify-between items-baseline">
+                <span class="font-bold text-white text-sm">Kepala Desainer Web</span>
+                <span class="text-xs font-mono text-slate-400">Pengalaman Kampus</span>
+              </div>
+              <div class="text-xs text-purple-400 font-mono font-semibold">Universitas Battuta</div>
+              <p class="text-xs text-slate-300 mt-1">
+                Memimpin divisi desain web kampus dalam merancang antarmuka portal digital universitas, memastikan kemudahan akses informasi, estetika visual yang profesional, dan pengalaman pengguna optimal.
+              </p>
+            </div>
+
+            <!-- Diskominfo -->
+            <div class="border-l-2 border-emerald-400 pl-4 py-1">
+              <div class="flex justify-between items-baseline">
+                <span class="font-bold text-white text-sm">Mahasiswa Magang</span>
+                <span class="text-xs font-mono text-slate-400">Pengalaman Kedinasan</span>
+              </div>
+              <div class="text-xs text-emerald-400 font-mono font-semibold">Dinas Komunikasi dan Informatika (Diskominfo)</div>
+              <p class="text-xs text-slate-300 mt-1">
+                Berkontribusi aktif dalam asistensi digitalisasi layanan publik pemerintahan, pengelolaan basis data sistem informasi daerah, serta kolaborasi pengembangan website instansi.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical & Athletic Competencies -->
+        <div>
+          <h2 class="font-display font-bold text-base text-cyan-300 uppercase tracking-wider mb-2">Keahlian Utama</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div><strong class="text-white">Web Development:</strong> HTML5, CSS3, JavaScript, Responsive Design, Tailwind CSS, UI/UX Design</div>
+            <div><strong class="text-white">Programmer & IT:</strong> Logika Algoritma, Database Management, IT Support, Hardware & Network Troubleshooting</div>
+            <div><strong class="text-white">Basketball Atletik:</strong> Team Leadership, High Stamina & Agility, Strategic Playmaking, Mental Resilience</div>
+            <div><strong class="text-white">Soft Skills:</strong> Disiplin Tinggi, Kerja Sama Tim, Komunikasi Cepat, Problem Solving di Bawah Tekanan</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/sound.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
